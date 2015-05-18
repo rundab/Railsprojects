@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tenant.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @tenant.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @tenant.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @tenant.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @tenant.zip %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @tenant.note %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @tenant.phone %>
+</p>
+
+<p>
+  <strong>Surcharge:</strong>
+  <%= @tenant.surcharge %>
+</p>
+
+<p>
+  <strong>Manager:</strong>
+  <%= @tenant.manager_id %>
+</p>
+
+<p>
+  <strong>Refnum:</strong>
+  <%= @tenant.refnum %>
+</p>
+
+<p>
+  <strong>Suite:</strong>
+  <%= @tenant.suite %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @tenant.email %>
+</p>
+
+<%= link_to 'Edit', edit_tenant_path(@tenant) %> |
+<%= link_to 'Back', tenants_path %>

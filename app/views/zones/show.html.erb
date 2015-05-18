@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @zone.name %>
+</p>
+
+<p>
+  <strong>Sqft:</strong>
+  <%= @zone.sqft %>
+</p>
+
+<p>
+  <strong>Hour limit:</strong>
+  <%= @zone.hour_limit %>
+</p>
+
+<p>
+  <strong>Meter pct:</strong>
+  <%= @zone.meter_pct %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @zone.event_id %>
+</p>
+
+<%= link_to 'Edit', edit_zone_path(@zone) %> |
+<%= link_to 'Back', zones_path %>

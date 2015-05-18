@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  sqft: 1
+  hour_limit: 1
+  meter_pct: 1
+  event_id: 1
+
+two:
+  name: MyString
+  sqft: 1
+  hour_limit: 1
+  meter_pct: 1
+  event_id: 1

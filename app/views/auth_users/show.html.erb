@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @auth_user.name %>
+</p>
+
+<p>
+  <strong>Hashed password:</strong>
+  <%= @auth_user.hashed_password %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @auth_user.level %>
+</p>
+
+<%= link_to 'Edit', edit_auth_user_path(@auth_user) %> |
+<%= link_to 'Back', auth_users_path %>
