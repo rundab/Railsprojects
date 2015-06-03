@@ -1,0 +1,23 @@
+<%= form_tag(:action => "generate_bills") %>
+<h4>Invoice Period</h4>
+<h4>Tenant to be Invoiced</h4>
+Name: <%= collection_select("tenant", "id", @tenants, "id", "name") %>
+
+<br />
+
+<br />
+<%= form_for(:model) do |form| %>
+<!-- Date Start: <%= form.date_select :start %> -->
+    Bill Month: <%= select_month(Date.today, field_name: 'bill_month') %>
+    Bill Year: <%= select_year(Date.today, field_name: 'bill_year', start_year: 2014, end_year: 2020) %>
+    <br />
+    <br />
+
+<br />
+    <br />
+
+    <input type="submit" value="Submit">
+<% end %>
+
+
+
