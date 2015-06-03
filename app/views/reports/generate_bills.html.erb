@@ -1,0 +1,99 @@
+
+<h3>Utility Invoice for <%= @tenant2.name %>-Billing Period-<%= params[:date][:bill_month] %>/<%= params[:date][:bill_year] %></h3>
+<%= @start_date %>
+<h3>Bill To:</h3>
+<div id="billto">
+  <table>
+    <tr>
+      <td><b><%= @tenant2.name -%></b></td>
+    </tr>
+    <tr>
+      <td><b><%= "Suite " + @tenant2.suite unless ((!@tenant2.suite) || (@tenant2.suite ==""))%></b></td>
+    </tr>
+    <tr>
+      <td><b><%= @tenant2.address %></b></td>
+    </tr>
+    <tr>
+      <td><b><%= @tenant2.city %></b></td><td><b><%= @tenant2.state %></b></td><td><b><%= @tenant2.zip %></b></td>
+    </tr>
+  </table>
+</div>
+<br />
+<div id="summary">
+  <table cellpadding = "3">
+    <tr>
+      <th colspan = "3" align="center"><b>Summary of charges by area</b></th>
+    </tr>
+    <% total_cost = 0 %>
+    <% @testarray.each do | ovrlist | %>
+       <% total_cost += ovrlist.cost %>
+        <tr>
+          <td width = "150"><%= ovrlist.zone.name %></td><td width = "150" align="right"><%= number_to_currency(ovrlist.cost) %></td>
+        </tr>
+    <% end %>
+    <% if @tenant2.surcharge.to_f > 0 %>
+       <tr>
+           <td id="surcharge_label" width = "150">Surcharge</td>
+           <td>=</td><td id="surcharge_value" width= "150" align = "right"><%= number_to_currency(@tenant2.surcharge.to_f) %></td>
+        </tr>
+        <% total_cost += @tenant2.surcharge.to_f %>
+    <% end %>
+    <tr>
+      <td><b>Total of Charges:</b></td><td align = "right" colspan = "2"><b> <%= number_to_currency(total_cost) %></b></td>
+    </tr>
+
+  </table>
+</div>
+
+<br />
+
+<div id="billdetail">
+<% @testarray.each do | ovrlist | %>
+    <table cellpadding="3" border="0">
+      <tr>
+        <td width="150">Area Name:</td>
+        <td width="150"><%= ovrlist.zone.name %></td>
+        <% if ovrlist.zone.bill_type == "BO" %>
+          <td><%= number_to_currency(ovrlist.zone.ot_charge) %> /Hour </td>
+        <% end %>
+
+      </tr>
+    </table>
+    <% if ovrlist.zone.bill_type == "BO" %>
+        <em><%= ovrlist.zone.name + " is a Timed Override Area" %> </em>
+        <table border = "0" cellpadding="3">
+          <% if ovrlist.tolist %>
+            <% ovrlist.tolist.each do |tovr| %>
+              <% if tovr.valid %>
+                  <tr>
+                    <td width="75" > Event On</td>
+                    <td width="150"><%= tovr.starttime.strftime("%H:%M %d-%b-%y") %></td>
+                    <td width="75" > Event Off</td>
+                    <td width="150"><%= tovr.endtime.strftime("%H:%M %d-%b-%y") %></td>
+                    <td width="60"><%= tovr.duration %> Min </td>
+                    <td align="right"><%= number_to_currency(tovr.cost) %></td>
+                  </tr>
+              <% end %>
+          <% end %>
+          <% if ovrlist.tolist.size == 0 %>
+            Double Print  <em>There is no data for this zone</em><br />
+          <% end %>
+        <% end %>
+          <tr>
+            <td colspan="5"><b>Total cost for this area's override(s)</b></td><td align="right"><b><%= number_to_currency(ovrlist.cost)%></b></td>
+          </tr>
+
+
+
+        </table>
+        <hr />
+    <% end %>
+    <% if ovrlist.zone.bill_type = "MO" %>
+          <% @testobj1 = ovrlist %>
+          <%= render(partial: "meter_display", object: @testobj1) %>
+    <% end %>
+
+<% end %>
+</div>
+
+
