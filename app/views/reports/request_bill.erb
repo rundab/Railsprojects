@@ -1,11 +1,13 @@
 <%= form_tag(:action => "generate_bills") %>
-<h4>Invoice Period</h4>
+
 <h4>Tenant to be Invoiced</h4>
 Name: <%= collection_select("tenant", "id", @tenants, "id", "name") %>
+Include details <%= check_box_tag(:include_details) %>
 
 <br />
-
 <br />
+<h4>Invoice Period</h4>
+
 <%= form_for(:model) do |form| %>
 <!-- Date Start: <%= form.date_select :start %> -->
     Bill Month: <%= select_month(Date.today, field_name: 'bill_month') %>

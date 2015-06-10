@@ -48,6 +48,10 @@
 <br />
 
 <div id="billdetail">
+  <% if params[:include_details] == '1' %>
+
+
+
 <% @testarray.each do | ovrlist | %>
     <table cellpadding="3" border="0">
       <tr>
@@ -90,6 +94,7 @@
     <% end %>
 
 
+<% end %>
 <% end %>
 </div>
 
