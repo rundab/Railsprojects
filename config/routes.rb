@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get '/reports/request_bill', to: 'reports#request_bill'
+  post '/reports/generate_bills', to: 'reports#generate_bills'
+  resources :authusers
+
+  resources :reports
+
   resources :tenants
 
   resources :managers
@@ -12,7 +19,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'tenants#index'
+  root 'reports#request_bill'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
