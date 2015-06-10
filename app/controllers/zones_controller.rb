@@ -4,7 +4,7 @@ class ZonesController < ApplicationController
   # GET /zones
   # GET /zones.json
   def index
-    @zones = Zone.all
+    @zones = Zone.all.page(params[:page]).per(15)
   end
 
   # GET /zones/1

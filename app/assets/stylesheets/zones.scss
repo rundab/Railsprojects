@@ -1,0 +1,36 @@
+.zones {
+  table {
+    border-collapse: collapse;
+    width: 400px;
+  }
+  table tr td {
+    padding: 5px;
+    vertical-align: top;
+  }
+  .list_description {
+    width: 100%;
+
+    dl {
+      margin: 0;
+    }
+    dt {
+      color: #244;
+      font-weight: bold;
+      font-size: larger;
+    }
+    dd {
+      margin: 0;
+    }
+  }
+  .list_actions {
+    font-size: x-small;
+    text-align: right;
+    padding-left: 1em;
+  }
+  .list_line_even {
+    background: #e0f8f8;
+  }
+  .list_line_odd {
+    background: #a1f5f8;
+  }
+}

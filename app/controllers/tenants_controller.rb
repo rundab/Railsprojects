@@ -4,7 +4,7 @@ class TenantsController < ApplicationController
   # GET /tenants
   # GET /tenants.json
   def index
-    @tenants = Tenant.all.page(params[:page])
+    @tenants = Tenant.all.page(params[:page]).per(10)
   end
 
   # GET /tenants/1
