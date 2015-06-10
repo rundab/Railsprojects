@@ -20,6 +20,10 @@
     <%= f.text_field :address %>
   </div>
   <div class="field">
+    <%= f.label :suite %><br>
+    <%= f.text_field :suite %>
+  </div>
+  <div class="field">
     <%= f.label :city %><br>
     <%= f.text_field :city %>
   </div>
@@ -43,17 +47,14 @@
     <%= f.label :surcharge %><br>
     <%= f.text_field :surcharge %>
   </div>
-  <div class="field">
-    <%= f.label :manager_id %><br>
-    <%= f.number_field :manager_id %>
-  </div>
+    <div>
+      <%= select('tenant', 'manager_id', Manager.all.collect { |t| [t.name, t.id ]}) %>
+    </div>
+
+
   <div class="field">
     <%= f.label :refnum %><br>
     <%= f.text_field :refnum %>
-  </div>
-  <div class="field">
-    <%= f.label :suite %><br>
-    <%= f.text_field :suite %>
   </div>
   <div class="field">
     <%= f.label :email %><br>
