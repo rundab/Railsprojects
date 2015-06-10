@@ -69,6 +69,7 @@ class ManagersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manager_params
-      params[:manager]
+      params.require(:manager).permit(:address, :tenant_id, :city, :state, :zip, :phone, :rate, :name)
+     # params[:manager]
     end
 end

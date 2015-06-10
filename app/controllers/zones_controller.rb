@@ -69,6 +69,6 @@ class ZonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def zone_params
-      params.require(:zone).permit(:name, :sqft, :hour_limit, :meter_pct, :event_id)
+      params.require(:zone).permit(:name, :sqft, :hour_limit, :meter_pct, :event_id, :bill_type, :tenant_id, :ot_charge, :rate)
     end
 end

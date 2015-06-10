@@ -12,6 +12,30 @@ class ReportsController < ApplicationController
   end
   # GET /reports/1
   # GET /reports/1.json
+def generate_bills
+  month_to_bill = params[:date][:bill_month]
+  year_to_bill = params[:date][:bill_year]
+  x=params[:tenant][:id]
+#@invoicearray=[]
+#@tenants = Tenant.all
+@tenant2 = Tenant.find(x)
+@testarray = []
+@zones = @tenant2.zones.all
+  @zones.each do | zn |
+    puts zn.name
+    if zn.bill_type="BO"
+      puts 'Yippee'
+      @to = TovList.new
+      @to.zone=zn
+      puts zn.event_id
+      @to.build_list(zn.event_id, month_to_bill.to_i, year_to_bill.to_i)
+      @testarray << @to
+
+    end
+  end
+
+end
+
   def show
   end
 

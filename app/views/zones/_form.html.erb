@@ -15,9 +15,20 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+    <div class="field">
+      <%= f.label :bill_type %><br>
+      <%= select('zone', 'bill_type', [['Timed Override', 'BO'],
+                                        ['KWH Meter', 'MO'],
+                                        ['Gas Meter', 'GO'],
+                                        ['Runtime', 'RT']]) %>
+    </div>
   <div class="field">
-    <%= f.label :sqft %><br>
-    <%= f.number_field :sqft %>
+    <%= f.label 'Billable Square Footage of the Area' %><br>
+    <%= f.number_field :sqft, 'size' => 5 %>
+  </div>
+  <div class="field">
+      <%= f.label 'Charge per SqFt per Hour' %><br>
+      <%= f.number_field :ot_charge,  :step => 0.01 %>
   </div>
   <div class="field">
     <%= f.label :hour_limit %><br>
@@ -28,13 +39,20 @@
     <%= f.number_field :meter_pct %>
   </div>
   <div class="field">
-    <%= f.label :event_id %><br>
-    <%= f.number_field :event_id %>
-  </div>
-    <div class="field">
-      <%= f.label :tenant_id %><br>
-      <%= f.number_field :tenant_id %>
-    </div>
+  <%= f.label :event_id %><br>
+  <%= select('zone', 'event_id', EventEnrollment.all.collect{ | e | [e.event_name + " " + e.event_enrollment_id.to_s, e.event_enrollment_id]}) %>
+</div>
+   
+  <div class="field">
+     <label for="zone_tenant">Tenant this zone belongs to:</label><br />
+     <%= select('zone', 'tenant_id', Tenant.all.collect { |t| [t.name, t.id ]}) %> &nbsp; &nbsp; <%= link_to 'New Tenant', :action => 'new', :controller => 'tenants' %>
+   </div>
+   <div class="field">
+     <%= f.label :rate %><br>
+     <%= f.number_field :rate %>
+   </div>
+
+
   <div class="actions">
     <%= f.submit 'Create' %>
   </div>
