@@ -19,6 +19,7 @@ def generate_bills
 #@invoicearray=[]
 #@tenants = Tenant.all
 @tenant2 = Tenant.find(x)
+  @manager = Manager.find(@tenant2.manager_id)
 @testarray = []
 @zones = @tenant2.zones.all
   @zones.each do | zn |
