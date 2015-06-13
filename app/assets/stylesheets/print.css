@@ -1,0 +1,15 @@
+
+@media print {
+  .noPrint {
+      display: none;
+  }
+    #main {
+        display: inline;
+
+    }
+
+
+  #main {
+      background-color: yellow;
+  }
+}
