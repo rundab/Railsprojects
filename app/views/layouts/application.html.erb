@@ -8,11 +8,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
-    <div id="banner">
+    <div id="banner" class="noPrint">
         <%= @page_title || "Override NG" %>
     </div>
     <div id="columns">
-        <div id="side">
+        <div id="side" class="noPrint">
             <ul>
                 <li><%= link_to 'Generate Bill Request', reports_request_bill_url %> Home </li>
                 <li><%= link_to 'Tenants', tenants_url %>Tenants</li>
