@@ -1,5 +1,6 @@
 
-<h3>Utility Invoice for <%= @tenant2.name %>-Billing Period-<%= params[:date][:bill_month] %>/<%= params[:date][:bill_year] %></h3>
+<h3>Utility Invoice for <%= @tenant2.name %></h3>
+<h4>Billing Period <%= params[:date][:bill_month] %>/<%= params[:date][:bill_year] %></h4>
 <%= @start_date %>
 <h3>Bill To:</h3>
 <div id="billto">
@@ -47,6 +48,24 @@
 
 <br />
 
+<div id="billinfo">
+  <table cellpadding="3">
+    <tr>
+      <td width="300"><b>Please Remit Payment To:</b></td><td width="300"><b>Billed To:</b></td>
+    </tr>
+    <tr>
+      <td width = "300"><%= @manager.name %></td><td width="300"><%= @tenant2.name %></td>
+    </tr>
+    <tr>
+      <td width="300"><%= @manager.address %></td><td width="300 "><%= @tenant2.address %></td>
+    </tr>
+    <tr>
+      <td width="300"><%= @manager.city %>,&nbsp;<%= @manager.state %>, &nbsp;<%= @manager.zip %> </td>
+      <td width="300"><%= @tenant2.city %>,&nbsp;<%= @tenant2.state %>, &nbsp;<%= @tenant2.zip %> </td>
+    </tr>
+  </table>
+</div>
+<br />
 <div id="billdetail">
   <% if params[:include_details] == '1' %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518004959) do
+ActiveRecord::Schema.define(version: 20150601140723) do
 
   create_table "activity_log", force: :cascade do |t|
     t.datetime "time",                                                   null: false
@@ -63,11 +63,9 @@ ActiveRecord::Schema.define(version: 20150518004959) do
   end
 
   create_table "authusers", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.string   "hashed_password", limit: 255
-    t.integer  "level",           limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string  "name",            limit: 10, default: "", null: false
+    t.string  "hashed_password", limit: 40, default: "", null: false
+    t.integer "level",           limit: 4,  default: 3
   end
 
   create_table "building_controller_history", id: false, force: :cascade do |t|
@@ -493,6 +491,11 @@ ActiveRecord::Schema.define(version: 20150518004959) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "tovs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trend_sets", primary_key: "trend_set_id", force: :cascade do |t|
     t.boolean  "active",                      limit: 1,   null: false
     t.integer  "site_id",                     limit: 4
@@ -592,10 +595,15 @@ ActiveRecord::Schema.define(version: 20150518004959) do
     t.integer  "hour_limit", limit: 4
     t.integer  "meter_pct",  limit: 4
     t.integer  "event_id",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "tenant_id",  limit: 4
     t.float    "rate",       limit: 24
+    t.string   "bill_type",  limit: 2
+    t.float    "size",       limit: 24
+    t.float    "ot_charge",  limit: 24,  default: 0.0022
+    t.float    "ovr_period", limit: 24,  default: 2.0
+    t.integer  "meter_int",  limit: 4
   end
 
 end

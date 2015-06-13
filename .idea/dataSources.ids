@@ -48,6 +48,22 @@
       <index name="alarms_event_enrollment_ind" unique="false" columns="event_enrollment_id"/>
       <index name="alarms_unack_ind" unique="false" columns="status,ack_required"/>
     </table>
+    <table name="auth_users" schema="" catalog="eBuilding" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="hashed_password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="level" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="authusers" schema="" catalog="eBuilding" type="TABLE">
+      <column name="name" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="hashed_password" sqlType="CHAR" precision="40" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="level" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="Mw=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="building_controller_history" schema="" catalog="eBuilding" type="TABLE">
       <column name="controller_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="event_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
@@ -228,6 +244,31 @@
       <column name="prop_reference" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <index name="ep_eo_id_ind" unique="false" columns="equipment_object_id"/>
     </table>
+    <table name="event" schema="" catalog="eBuilding" type="TABLE">
+      <column name="db" sqlType="CHAR" precision="64" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="name" sqlType="CHAR" precision="64" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="body" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="false" jdbcType="-4"/>
+      <column name="definer" sqlType="CHAR" precision="77" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="execute_at" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="interval_value" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="interval_field" sqlType="ENUM" precision="18" scale="0" nullable="true" jdbcType="1"/>
+      <column name="created" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="modified" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="last_executed" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="starts" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ends" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="status" sqlType="ENUM" precision="18" scale="0" nullable="false" jdbcType="1" def="J0VOQUJMRUQn"/>
+      <column name="on_completion" sqlType="ENUM" precision="8" scale="0" nullable="false" jdbcType="1" def="J0RST1An"/>
+      <column name="sql_mode" sqlType="SET" precision="478" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="comment" sqlType="CHAR" precision="64" scale="0" nullable="false" jdbcType="1" def="Jyc="/>
+      <column name="originator" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="time_zone" sqlType="CHAR" precision="64" scale="0" nullable="false" jdbcType="1" def="J1NZU1RFTSc="/>
+      <column name="character_set_client" sqlType="CHAR" precision="32" scale="0" nullable="true" jdbcType="1"/>
+      <column name="collation_connection" sqlType="CHAR" precision="32" scale="0" nullable="true" jdbcType="1"/>
+      <column name="db_collation" sqlType="CHAR" precision="32" scale="0" nullable="true" jdbcType="1"/>
+      <column name="body_utf8" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="true" jdbcType="-4"/>
+      <primary-key name="PRIMARY" columns="db,name"/>
+    </table>
     <table name="event_enrollments" schema="" catalog="eBuilding" type="TABLE">
       <column name="event_enrollment_id" sqlType="MEDIUMINT UNSIGNED" precision="8" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="controller_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -313,6 +354,18 @@
       <index name="logical_device_object_type_ind" unique="false" columns="device_type"/>
       <index name="logical_devices_controller_ind" unique="false" columns="controller_id"/>
     </table>
+    <table name="managers" schema="" catalog="eBuilding" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="address" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="tenant_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="city" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="CHAR" precision="2" scale="0" nullable="true" jdbcType="1"/>
+      <column name="zip" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="rate" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7" def="MC4wMg=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
     <table name="notes" schema="" catalog="eBuilding" type="TABLE">
       <column name="note_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="control_title" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
@@ -379,6 +432,10 @@
       <column name="desc_5" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
       <column name="desc_6" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="desc_id"/>
+    </table>
+    <table name="schema_migrations" schema="" catalog="eBuilding" type="TABLE">
+      <column name="version" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <index name="unique_schema_migrations" unique="true" columns="version"/>
     </table>
     <table name="servlet_log" schema="" catalog="eBuilding" type="TABLE">
       <column name="uri_id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4"/>
@@ -449,6 +506,30 @@
       <column name="addressline2" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12"/>
       <column name="zipcode" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="suiteno" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="tenants" schema="" catalog="eBuilding" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="state" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="zip" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="note" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="surcharge" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="manager_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="refnum" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="suite" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tovs" schema="" catalog="eBuilding" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
     </table>
     <table name="trend_sets" schema="" catalog="eBuilding" type="TABLE">
       <column name="trend_set_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -546,6 +627,24 @@
       <column name="can_create" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
       <column name="can_delete" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
       <column name="can_ack" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="zones" schema="" catalog="eBuilding" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sqft" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="hour_limit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="meter_pct" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="event_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="tenant_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="rate" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="bill_type" sqlType="VARCHAR" precision="2" scale="0" nullable="true" jdbcType="12"/>
+      <column name="size" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
+      <column name="ot_charge" sqlType="DECIMAL" precision="5" scale="2" nullable="true" jdbcType="3" def="MS4wMA=="/>
+      <column name="ovr_period" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7" def="Mg=="/>
+      <column name="meter_int" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
     </table>
   </data-source>
